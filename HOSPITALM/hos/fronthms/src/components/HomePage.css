@@ -1,0 +1,216 @@
+/* 
+   body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(320deg, #125A66, #093840);
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+  
+  .navbar-brand {
+    font-size: 24px;
+    color: #125A66;
+  }
+  
+  .nav-items a {
+    margin: 0 15px;
+    color: hsl(189, 70%, 24%);
+    text-decoration: none;
+  }
+  
+  .nav-items a:hover {
+    text-decoration: underline;
+  }
+  
+  .current-time {
+    font-size: 14px;
+    color: #125A66;
+  }
+  
+  .container {
+    color: white;
+  }
+  
+  .portal-box {
+    margin-top: 50px; 
+  }
+  
+  .card-group {
+    display: flex;
+    justify-content: space-between; 
+  }
+  
+  .custom-card {
+    flex: 1;
+    margin: 0 5px;
+    max-width: 500px;
+}
+
+.card-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover; 
+    margin-bottom: 15px;
+}
+
+
+  
+  .custom-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .custom-card-header {
+    background-color: #125A66;
+    color: white;
+    font-weight: 600;
+    border-radius: 7px 7px 0 0;
+    padding: 15px;
+  }
+  
+  .custom-card-body {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .custom-btn {
+    margin-top: 15px; 
+    width: 100%; 
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    text-align: center;
+    color: white;
+    background-color: #125A66;
+    text-decoration: none;
+    transition: background-color 0.3s;
+  }
+  
+  .custom-btn:hover {
+    background-color: #0f4a5a;
+  }
+  
+ 
+   */
+   .home-page {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #ffffff, #6dd5ed, #ffffff); /* Subtle gradient from white to light blue and back */
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+/*   
+  .home-page .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 30px;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+  
+  .home-page .navbar-brand {
+    font-size: 24px;
+    color: #125A66;
+  }
+  
+  .home-page .nav-items a {
+    margin: 0 15px;
+    color: hsl(189, 70%, 24%);
+    text-decoration: none;
+  }
+  
+  .home-page .nav-items a:hover {
+    text-decoration: underline;
+  }
+  
+  .home-page .current-time {
+    font-size: 14px;
+    color: #125A66;
+  }
+   */
+  .home-page .main-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .home-page .login-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px; /* Adjust the gap as needed */
+  }
+  
+  .home-page .login-box {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px; /* Fixed width for both boxes */
+    height: 350px; /* Fixed height for both boxes */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    padding: 20px;
+    transition: all 0.3s ease;
+  }
+  
+  .home-page .login-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .home-page .login-box img {
+    width: 100px; /* Set a fixed width for both images */
+    height: 100px; /* Set a fixed height for both images */
+    margin-bottom: 20px;
+  }
+  
+.home-page .login-info {
+  text-align: center;
+  flex: 1; /* Allow this div to expand */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+  width: 100%; /* Ensure it takes the full width */
+}
+
+.home-page .login-info h2,
+.home-page .login-info p {
+  margin: 10px 0; /* Spacing for elements */
+}
+
+/* Adjustments for the button */
+.home-page .btn.btn-primary {
+  background-color: #125A66;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  width: 200px; /* Fixed width for the button */
+  align-self: center; /* Center the button */
+  margin-top: auto; /* Push the button to the bottom */
+}
+
+.home-page .btn.btn-primary:hover {
+  background-color: #0f4a5a;
+}
