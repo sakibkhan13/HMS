@@ -17,6 +17,12 @@ from .serializers import WardInfoSerializer
 from .serializers import CabinInfoSerializer
 from .models import Support
 from .serializers import SupportSerializer
+from .models import BloodDonors
+from .serializers import BloodDonorsSerializer
+from .models import BloodAvailability, BloodDonors
+from .serializers import BloodAvailabilitySerializer, BloodDonorsSerializer
+from .models import BloodDonors, BloodRecipient, BloodAvailability
+from .serializers import BloodDonorsSerializer, BloodRecipientSerializer
 
 @api_view(['POST'])
 def doctor_signup(request):
@@ -228,6 +234,22 @@ def create_support(request):
         return Response({'success': 'Support submitted successfully'}, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+#####
 
+@api_view(['POST'])
+def blood_donors_signup(request):
+    if request.method == 'POST':
+        serializer = BloodDonorsSerializer(data=request.data)
+        if serializer.is_valid():
+            email = request.data.get('email', '')
+            phone = request.data.get('phone', '')
+            if BloodDonors.objects.filter(email=email).exists():
+                return Response({'email': 'Email already exists.'}, status=status.HTTP_400_BAD_REQUEST)
+            if BloodDonors.objects.filter(phone=phone).exists():
+                return Response({'phone': 'Phone number already exists.'}, status=status.HTTP_400_BAD_REQUEST)
+            serializer.save()
+            update_blood_availability() 
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
