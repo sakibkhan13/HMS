@@ -3,7 +3,7 @@
     background-color: #071832;
     color: white;
     min-height: 100vh;
-    padding: 0; /* Padding set to 0 */
+    padding: 0; 
 }
 
 .patient-details-page .navbar-fixed-top {
@@ -15,12 +15,12 @@
 
 .patient-details-page .patient-details-container {
     text-align: center;
-    margin-top: 50px; /* Adjusted for a slightly higher position */
+    margin-top: 50px; 
 }
 
 .patient-details-page .patient-details-title {
     color: #FFF;
-    margin: 20px 0; /* Reduced top margin */
+    margin: 20px 0; 
 }
 
 .patient-details-page .patient-details-options {
@@ -36,7 +36,7 @@
     padding: 20px;
     text-align: left;
     border-radius: 10px;
-    width: 300px; /* Fixed width for a uniform look */
+    width: 300px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     text-decoration: none;

@@ -98,8 +98,8 @@ h1 {
     }
 }
 .welcome-profile-box {
-    background-color: #ffffff; /* White background */
-    color: #4A90E2; /* Navy blue font color */
+    background-color: #ffffff; 
+    color: #4A90E2;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
@@ -111,9 +111,6 @@ h1 {
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-
-/* Styles for the dashboard boxes with animations */
-
 
 .dashboard-box:hover {
     transform: scale(1.1);

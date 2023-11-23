@@ -1,16 +1,4 @@
-# from django.contrib import admin
 
-# # Register your models here.
-# from django.contrib import admin
-# from .models import Doctor, Patient, Support
-
-# @admin.register(Doctor)
-# class DoctorAdmin(admin.ModelAdmin):
-#     list_display = ['first_name', 'last_name','sex','dob' ,'email', 'phone',"speciality","department"]
-
-# @admin.register(Patient)
-# class PatientAdmin(admin.ModelAdmin):
-#     list_display = ['first_name', 'last_name','sex','dob', 'email', 'phone']
 from django.contrib import admin
 from .models import Doctor, Patient, Prescription, Ward, Cabin, Support
 
@@ -30,7 +18,7 @@ class PatientAdmin(admin.ModelAdmin):
 class WardAdmin(admin.ModelAdmin):
     list_display = ['ward_no', 'floor_no', 'booked_by', 'email', 'total_days', 'total_bill', 'booked_date', 'ward_type']
 
-@admin.register(Cabin)  # Register the Cabin model
+@admin.register(Cabin) 
 class CabinAdmin(admin.ModelAdmin):
     list_display = ['cabin_no', 'floor_no', 'booked_by', 'email', 'total_days', 'total_bill', 'booked_date', 'cabin_type']
     

@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './Appointment.css'; // Import the CSS file for styling
+import './Appointment.css';
 
 const Appointment = () => {
   const [departments, setDepartments] = useState([]);
@@ -46,7 +46,7 @@ const Appointment = () => {
       doctor_name: selectedDoctor,
       date: selectedDate,
       day: selectedDay,
-      selectedTimeSlot: selectedTimeSlot,  // Updated field name to match backend
+      selectedTimeSlot: selectedTimeSlot,  
       patient_name: patientName,
       patient_email: patientEmail,
     };

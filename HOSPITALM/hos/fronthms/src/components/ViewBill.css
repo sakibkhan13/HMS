@@ -26,8 +26,8 @@
   transition: background-color 0.2s, color 0.2s;
   border-radius: 4px;
   margin: 0 5px;
-  background-color: #e7e7e7; /* Neutral background for tabs */
-  color: #333; /* Dark text for visibility */
+  background-color: #e7e7e7; 
+  color: #333; 
 }
 
 .tab.active {

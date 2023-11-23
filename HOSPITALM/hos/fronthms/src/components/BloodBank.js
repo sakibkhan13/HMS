@@ -1,4 +1,3 @@
-// BloodBank.js
 
 import React, { useState, useEffect } from 'react';
 import './BloodBank.css';
@@ -8,7 +7,7 @@ const BloodBank = () => {
   const [showBloodDetails, setShowBloodDetails] = useState(false);
 
   useEffect(() => {
-    // Fetch blood bank details from your Django API
+    
     fetch('http://127.0.0.1:8000/api/blood-bank/')
       .then((response) => response.json())
       .then((data) => setPatients(data))
