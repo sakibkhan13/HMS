@@ -137,14 +137,7 @@ def get_patients(request):
         'first_name', 'last_name', 'email', 'phone', 'bloodGroup'
     )
     return JsonResponse({'patients': list(patients)}, safe=False)
-@api_view(['GET'])
-def blood_bank_details(request):
-    """
-    View to get blood bank details.
-    """
-    patients = Patient.objects.all()
-    serializer = PatientSerializer(patients, many=True)
-    return Response(serializer.data)
+
 
 @api_view(['GET'])
 def get_available_wards(request):
@@ -163,14 +156,14 @@ def get_available_cabins(request):
 def book_ward(request):
     data = request.data
     ward_no = data.get('wardNo')
-    booked_date = datetime.strptime(data.get('bookedDate'), '%Y-%m-%d').date()  # Parse booked date
+    booked_date = datetime.strptime(data.get('bookedDate'), '%Y-%m-%d').date()  
     try:
         ward = Ward.objects.get(ward_no=ward_no, booked_by=None)
         ward.booked_by = data.get('name')
         ward.email = data.get('email')
         ward.total_days = int(data.get('totalDays'))
-        ward.total_bill = ward.total_days * 1100  # Example calculation
-        ward.booked_date = booked_date  # Save booked date
+        ward.total_bill = ward.total_days * 1100  
+        ward.booked_date = booked_date  
         ward.save()
         return Response({'message': 'Ward booked successfully.', 'ward_no': ward_no})
     except Ward.DoesNotExist:
@@ -180,7 +173,7 @@ def book_ward(request):
 def book_cabin(request):
     data = request.data
     cabin_no = data.get('cabinNo')
-    booked_date = datetime.strptime(data.get('bookedDate'), '%Y-%m-%d').date()  # Parse booked date
+    booked_date = datetime.strptime(data.get('bookedDate'), '%Y-%m-%d').date()  
     try:
         cabin = Cabin.objects.get(cabin_no=cabin_no, booked_by=None)
         cabin.booked_by = data.get('name')
@@ -191,7 +184,7 @@ def book_cabin(request):
             cabin.total_bill = cabin.total_days * 2000
         elif cabin_type == 'Double':
             cabin.total_bill = cabin.total_days * 2500
-        cabin.booked_date = booked_date  # Save booked date
+        cabin.booked_date = booked_date 
         cabin.save()
         return Response({'message': 'Cabin booked successfully.', 'cabin_no': cabin_no})
     except Cabin.DoesNotExist:
@@ -237,82 +230,4 @@ def create_support(request):
 
 
 
-
-
-# views.py
-from rest_framework import generics
-from .models import Appointment
-from .serializers import AppointmentSerializer
-
-class CreateAppointmentView(generics.CreateAPIView):
-    queryset = Appointment.objects.all()
-    serializer_class = AppointmentSerializer
-
-# @api_view(['GET'])
-# def get_available_wards(request):
-#     wards = Ward.objects.filter(booked_by=None)
-#     serializer = WardInfoSerializer(wards, many=True)
-#     return Response(serializer.data)
-
-# @api_view(['POST'])
-# @transaction.atomic  
-# def book_ward(request):
-#     data = request.data
-#     ward_no = data.get('wardNo')
-#     email = data.get('email')
-#     try:
-#         ward = Ward.objects.get(ward_no=ward_no, booked_by=None)
-#     except Ward.DoesNotExist:
-#         return Response({'detail': 'Ward not available or already booked.'}, status=status.HTTP_400_BAD_REQUEST)
-#     ward.booked_by = data.get('name')
-#     ward.email = email
-#     ward.total_days = int(data.get('totalDays'))
-#     ward.total_bill = ward.total_days * 1100 
-#     ward.save()
-#     return Response({'message': 'Ward booked successfully.', 'ward_no': ward_no, 'total_bill': ward.total_bill})
-
-
-# @api_view(['GET'])
-# def get_available_cabins(request):
-#     cabins = Cabin.objects.filter(booked_by=None)
-#     serializer = CabinInfoSerializer(cabins, many=True)
-#     return Response(serializer.data)
-
-# @api_view(['POST'])
-# def book_cabin(request):
-#     data = request.data
-#     cabin_no = data.get('cabinNo')
-#     email = data.get('email')
-#     try:
-#         cabin = Cabin.objects.get(cabin_no=cabin_no, booked_by=None)
-#     except Cabin.DoesNotExist:
-#         return Response({'detail': 'Cabin not available or already booked.'}, status=status.HTTP_400_BAD_REQUEST)
-
-#     cabin.booked_by = data.get('name')
-#     cabin.email = email
-#     cabin.total_days = int(data.get('totalDays'))
-#     cabin_type = cabin.cabin_type
-#     if cabin_type == 'Single':
-#         cabin.total_bill = cabin.total_days * 2000  
-#     elif cabin_type == 'Double':
-#         cabin.total_bill = cabin.total_days * 2500  
-#     cabin.save()
-#     return Response({'message': 'Cabin booked successfully.', 'cabin_no': cabin_no, 'total_bill': cabin.total_bill})
-
-# @api_view(['GET'])
-# def get_patient_ward_bills(request):
-#     patient_email = request.GET.get('patient_email')
-
-#     ward_bills = Ward.objects.filter(email=patient_email, booked_by__isnull=False)
-#     serializer = WardInfoSerializer(ward_bills, many=True)
-#     serialized_data = serializer.data
-#     return Response(serialized_data)
-
-# @api_view(['GET'])
-# def get_patient_cabin_bills(request):
-#     patient_email = request.GET.get('patient_email')
-#     cabin_bills = Cabin.objects.filter(email=patient_email, booked_by__isnull=False)
-#     serializer = CabinInfoSerializer(cabin_bills, many=True)
-#     serialized_data = serializer.data
-#     return Response(serialized_data)
 

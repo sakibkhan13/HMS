@@ -4,6 +4,7 @@ from .models import Patient
 from .models import Prescription
 from .models import Ward
 from .models import Cabin
+from .models import Support
 
 class DoctorSerializer(serializers.ModelSerializer):
     class Meta:
@@ -12,7 +13,6 @@ class DoctorSerializer(serializers.ModelSerializer):
             'first_name', 'last_name', 'sex', 'dob', 'email', 'phone', 
             'degree', 'medical_college', 'password', 'speciality', 'department','availability'
         ]
-
 class PatientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Patient
@@ -26,12 +26,10 @@ class PatientSerializer(serializers.ModelSerializer):
             'phone',
             'bloodGroup',
             'password']
-
 class PrescriptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Prescription
         fields = '__all__'
-
 
 class WardInfoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -42,21 +40,6 @@ class CabinInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cabin
         fields = ['cabin_no', 'floor_no', 'cabin_type', 'total_days', 'total_bill', 'booked_date', 'booked_by', 'email']
-# serializers.py
-
-# serializers.py
-# serializers.py
-from rest_framework import serializers
-from .models import Appointment
-
-class AppointmentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Appointment
-        fields = '__all__'
-# serializers.py
-
-from rest_framework import serializers
-from .models import Support
 
 class SupportSerializer(serializers.ModelSerializer):
     class Meta:

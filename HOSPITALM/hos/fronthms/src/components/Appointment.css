@@ -1,4 +1,4 @@
-/* Appointment.css */
+
 .appointment-container {
     background-color: #071832;
     display: flex;
@@ -6,29 +6,28 @@
     justify-content: center;
     height: 100vh;
     margin: 0;
-    flex-direction: column; /* Align items and justify content in a column */
-  }
-  
+    flex-direction: column; 
+}
   .appointment-form {
     background-color: white;
     padding: 20px;
     border-radius: 8px;
-    width: 500px; /* Adjust the width as needed */
+    width: 500px; 
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     display: flex;
-    flex-direction: column; /* Align items in a column */
+    flex-direction: column; 
   }
   
   .appointment-form div {
     margin-bottom: 15px;
     display: flex;
-    flex-direction: row; /* Align items in a row */
-    justify-content: space-between; /* Space items evenly */
+    flex-direction: row; 
+    justify-content: space-between; 
   }
   
   .appointment-form label {
     margin-bottom: 5px;
-    flex: 1; /* Allow label to take available space */
+    flex: 1; 
   }
   
   .appointment-form input,
@@ -50,10 +49,10 @@
   }
   
   .appointment-form h1 {
-    color: white; /* Set the title color to white */
-    text-align: center; /* Center-align the title */
+    color: white; 
+    text-align: center; 
   }
-  /* Add these styles to Appointment.css */
+  
 .success-message {
     color: green;
     margin-top: 10px;

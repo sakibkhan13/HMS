@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Navbar from './Navbar'; // Import Navbar
-import './PatientDetails.css'; // Make sure this is correctly linked
+import Navbar from './Navbar'; 
+import './PatientDetails.css';
 
 function PatientDetails() {
-    // Implement fetching and displaying patient details if needed
+
 
     return (
         <div className="patient-details-page">

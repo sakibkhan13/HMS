@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from './Navbar';
 import './About.css';
-import hospitalImage from '../assets/thankyou.png'; // Import the hospital image
+import hospitalImage from '../assets/thankyou.png'; 
 
 function About() {
     return (

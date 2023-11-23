@@ -1,6 +1,5 @@
 from django.db import models
 
-# Create your models here.
 class Doctor(models.Model):
     class Meta:
         db_table = 'doctor'
@@ -12,7 +11,7 @@ class Doctor(models.Model):
     phone = models.CharField(max_length=15, unique=True)
     degree = models.CharField(max_length=100)
     medical_college = models.CharField(max_length=200)
-    password = models.CharField(max_length=100)  # Consider using Django's built-in User model for better password handling
+    password = models.CharField(max_length=100)  
     speciality = models.CharField(max_length=100, null=True, blank=True)
     department = models.CharField(max_length=100, null=True, blank=True)
     availability = models.CharField(max_length=255, null=True, blank=True)
@@ -105,7 +104,6 @@ class Cabin(models.Model):
         return f"Cabin {self.cabin_no}"
     
 
-
 class Support(models.Model):
     class Meta:
         db_table = "supports"
@@ -113,37 +111,6 @@ class Support(models.Model):
     phone = models.IntegerField()
     email = models.EmailField()
     message = models.TextField()
-    
-
-
     def __str__(self):
         return f"Message from Admin to {self.email}"
-    
-# models.py
 
-# hmsapp/models.py
-
-from django.db import models
-from .models import Patient
-
-
-from django.db import models
-from django.contrib.auth.models import User
-
-class Appointment(models.Model):
-    doctor_name = models.CharField(max_length=255)
-    doctor_email = models.EmailField()
-    department = models.CharField(max_length=255)
-    day = models.CharField(max_length=255)
-    date = models.DateField()
-    time_slot_1 = models.CharField(max_length=255, blank=True, null=True, unique=True)
-    time_slot_2 = models.CharField(max_length=255, blank=True, null=True, unique=True)
-    time_slot_3 = models.CharField(max_length=255, blank=True, null=True, unique=True)
-    time_slot_4 = models.CharField(max_length=255, blank=True, null=True, unique=True)
-    time_slot_5 = models.CharField(max_length=255, blank=True, null=True, unique=True)
-    time_slot_6 = models.CharField(max_length=255, blank=True, null=True, unique=True)
-    patient_name = models.CharField(max_length=255, blank=True, null=True)
-    patient_email = models.EmailField(blank=True, null=True)
-
-    def __str__(self):
-        return f"{self.doctor_name} - {self.date} - {self.time_slot_1}"

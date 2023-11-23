@@ -85,7 +85,7 @@
   margin-bottom: 5px;
 }
 
-/* Adjustments for smaller screens */
+
 @media (max-width: 768px) {
   .about-container {
     width: 90%;
