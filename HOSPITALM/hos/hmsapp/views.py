@@ -235,6 +235,18 @@ def create_support(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 #####
+#####
+
+@api_view(['GET'])
+def get_all_doctors(request):
+    doctors = Doctor.objects.all()
+    serializer = DoctorSerializer(doctors, many=True)
+    return Response(serializer.data)
+def get_patients(request):
+    patients = Patient.objects.all().values(
+        'first_name', 'last_name', 'email', 'phone', 'bloodGroup'
+    )
+    return JsonResponse({'patients': list(patients)}, safe=False)
 
 @api_view(['POST'])
 def blood_donors_signup(request):
@@ -252,4 +264,24 @@ def blood_donors_signup(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['POST'])
+def blood_recipient_request(request):
+    if request.method == 'POST':
+        serializer = BloodRecipientSerializer(data=request.data)
+        if serializer.is_valid():
+            blood_group = request.data.get('blood_group', '')
+            bags_needed = int(request.data.get('bags_needed', 0))  
 
+            
+            blood_availability = BloodAvailability.objects.filter(blood_group=blood_group).first()
+            if blood_availability is None or blood_availability.total_bags < bags_needed:
+                return Response({'error': 'Not enough bags available for the requested blood group.'}, status=status.HTTP_400_BAD_REQUEST)
+
+            
+            blood_availability.total_bags -= bags_needed
+            blood_availability.save()
+
+            serializer.save()
+
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
