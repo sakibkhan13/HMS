@@ -38,15 +38,27 @@ urlpatterns = [
     path('api/patient/cabin-bills/', views.get_patient_cabin_bills, name='get-patient-cabin-bills'),
     path('api/doctor/prescriptions/', views.get_doctor_prescriptions, name='get_doctor_prescriptions'),
     path('api/patients/', views.get_patients, name='get_patients'),
-    path('api/blood-bank/', views.blood_bank_details, name='blood-bank-details'),
-    path('api/get-doctor-info/<str:department>/', views.get_doctor_info, name='get-doctor-info'),
+    path('api/patient-blood-details/', views.patient_blood_details, name='patient-blood-details'),
+    # path('api/get-doctor-info/<str:department>/', views.get_doctor_info, name='get-doctor-info'),
     path('api/departments/', views.get_departments, name='get-departments'),
     path('api/create-support/', views.create_support, name='create-support'),
-  
-
-
+    path('api/get-doctor-info/<str:department>/', views.get_doctor_info, name='get_doctor_info'),
+    path('api/blood-donors/', views.blood_donors_signup, name='blood_donors_signup'),
+    # path('api/blood-donors-list/', views.get_blood_donors, name='get_blood_donors'),
+    path('blood-availability/', views.get_blood_availability, name='blood-availability'),
+    path('blood-donors/signup/', views.blood_donors_signup, name='blood-donors-signup'),
+    path('api/blood-donors/', views.get_blood_donors, name='get_blood_donors'),
+    # path('api/blood-recipients/', views.get_blood_recipients, name='get_blood_recipients'),
+    # path('api/blood-availability/', views.get_blood_availability, name='get_blood_availability'),
+    path('api/blood-recipient-request/', views.blood_recipient_request, name='blood_recipient_request'),
+     path('api/get-test-charge/', views.get_test_charge, name='get-test-charge'),
+     path('api/test-bill/', views.create_test_bill, name='create-test-bill'),
+     path('api/test-bills/', views.get_test_bills, name='get_test_bills'),
 
 ]
+    
+    
+
 
     
     

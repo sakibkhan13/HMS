@@ -235,6 +235,7 @@ def create_support(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 #####
+<<<<<<< Updated upstream
 #####
 
 @api_view(['GET'])
@@ -248,6 +249,8 @@ def get_patients(request):
     )
     return JsonResponse({'patients': list(patients)}, safe=False)
 
+=======
+>>>>>>> Stashed changes
 @api_view(['POST'])
 def blood_donors_signup(request):
     if request.method == 'POST':
@@ -284,4 +287,38 @@ def blood_recipient_request(request):
             serializer.save()
 
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+<<<<<<< Updated upstream
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+=======
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#not finished
+@api_view(['GET'])
+def get_blood_donors(request):
+    blood_donors = BloodDonors.objects.all()
+    serializer = BloodDonorsSerializer(blood_donors, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def get_blood_availability(request):
+    blood_availability = BloodAvailability.objects.all()
+    serializer = BloodAvailabilitySerializer(blood_availability, many=True)
+    return Response(serializer.data)
+
+def update_blood_availability():
+    blood_groups = BloodDonors.objects.values('blood_group').distinct()
+    for group in blood_groups:
+        count = BloodDonors.objects.filter(blood_group=group['blood_group']).count()
+        blood_availability = BloodAvailability.objects.get(blood_group=group['blood_group'])
+        blood_availability.total_bags = count
+        blood_availability.save()
+
+@api_view(['GET'])
+def patient_blood_details(request):
+    """
+    View to get blood bank details.
+    """
+    patients = Patient.objects.all()
+    serializer = PatientSerializer(patients, many=True)
+    return Response(serializer.data)
+
+>>>>>>> Stashed changes
