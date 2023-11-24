@@ -76,6 +76,7 @@ def patient_login(request):
     serializer = PatientSerializer(patient)
     return Response(serializer.data)
 
+
 @api_view(['GET'])
 def get_doctor_by_email(request):
     email = request.GET.get('email')
@@ -133,16 +134,15 @@ def update_doctor_profile(request):
         return JsonResponse({'message': 'Doctor profile updated successfully'})
     return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['GET'])
-def get_all_doctors(request):
-    doctors = Doctor.objects.all()
-    serializer = DoctorSerializer(doctors, many=True)
-    return Response(serializer.data)
-def get_patients(request):
-    patients = Patient.objects.all().values(
-        'first_name', 'last_name', 'email', 'phone', 'bloodGroup'
-    )
-    return JsonResponse({'patients': list(patients)}, safe=False)
+
+
+@api_view(['POST'])
+def create_support(request):
+    serializer = SupportSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response({'success': 'Support submitted successfully'}, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET'])
@@ -157,6 +157,7 @@ def get_available_cabins(request):
     serializer = CabinInfoSerializer(cabins, many=True)
     return Response(serializer.data)
 
+
 @api_view(['POST'])
 @transaction.atomic
 def book_ward(request):
@@ -169,8 +170,7 @@ def book_ward(request):
         ward.email = data.get('email')
         ward.total_days = int(data.get('totalDays'))
         ward.total_bill = ward.total_days * 1100  
-        ward.booked_date = booked_date  
-        ward.save()
+        ward.booked_date = booked_date 
         return Response({'message': 'Ward booked successfully.', 'ward_no': ward_no})
     except Ward.DoesNotExist:
         return Response({'detail': 'Ward not available or already booked.'}, status=status.HTTP_400_BAD_REQUEST)
@@ -190,7 +190,7 @@ def book_cabin(request):
             cabin.total_bill = cabin.total_days * 2000
         elif cabin_type == 'Double':
             cabin.total_bill = cabin.total_days * 2500
-        cabin.booked_date = booked_date 
+        cabin.booked_date = booked_date  
         cabin.save()
         return Response({'message': 'Cabin booked successfully.', 'cabin_no': cabin_no})
     except Cabin.DoesNotExist:
@@ -212,76 +212,5 @@ def get_patient_cabin_bills(request):
     serialized_data = serializer.data
     return Response(serialized_data)
 
-@api_view(['GET'])
-def get_doctor_info(request, department):
-    try:
-        doctors = Doctor.objects.filter(department=department)
-        serializer = DoctorSerializer(doctors, many=True)
-        return Response(serializer.data)
-    except Doctor.DoesNotExist:
-        return Response({'error': 'Doctors not found for the selected department.'}, status=status.HTTP_404_NOT_FOUND)
-
-@api_view(['GET'])
-def get_departments(request):
-    departments = Doctor.objects.values_list('department', flat=True).distinct()
-    return Response(departments)
-
-@api_view(['POST'])
-def create_support(request):
-    serializer = SupportSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response({'success': 'Support submitted successfully'}, status=status.HTTP_201_CREATED)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 #####
-#####
-
-@api_view(['GET'])
-def get_all_doctors(request):
-    doctors = Doctor.objects.all()
-    serializer = DoctorSerializer(doctors, many=True)
-    return Response(serializer.data)
-def get_patients(request):
-    patients = Patient.objects.all().values(
-        'first_name', 'last_name', 'email', 'phone', 'bloodGroup'
-    )
-    return JsonResponse({'patients': list(patients)}, safe=False)
-
-@api_view(['POST'])
-def blood_donors_signup(request):
-    if request.method == 'POST':
-        serializer = BloodDonorsSerializer(data=request.data)
-        if serializer.is_valid():
-            email = request.data.get('email', '')
-            phone = request.data.get('phone', '')
-            if BloodDonors.objects.filter(email=email).exists():
-                return Response({'email': 'Email already exists.'}, status=status.HTTP_400_BAD_REQUEST)
-            if BloodDonors.objects.filter(phone=phone).exists():
-                return Response({'phone': 'Phone number already exists.'}, status=status.HTTP_400_BAD_REQUEST)
-            serializer.save()
-            update_blood_availability() 
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-@api_view(['POST'])
-def blood_recipient_request(request):
-    if request.method == 'POST':
-        serializer = BloodRecipientSerializer(data=request.data)
-        if serializer.is_valid():
-            blood_group = request.data.get('blood_group', '')
-            bags_needed = int(request.data.get('bags_needed', 0))  
-
-            
-            blood_availability = BloodAvailability.objects.filter(blood_group=blood_group).first()
-            if blood_availability is None or blood_availability.total_bags < bags_needed:
-                return Response({'error': 'Not enough bags available for the requested blood group.'}, status=status.HTTP_400_BAD_REQUEST)
-
-            
-            blood_availability.total_bags -= bags_needed
-            blood_availability.save()
-
-            serializer.save()
-
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
