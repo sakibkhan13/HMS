@@ -1,0 +1,107 @@
+/* Test Body Styles */
+.test-body {
+  background-color: #071832; /* Background color for the entire body */
+  color: white; /* Text color for the entire body */
+  font-family: 'Arial', sans-serif; /* Font family for the entire body */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+}
+
+/* Container Styles */
+.test-container {
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-between; /* Space between the two boxes */
+  padding: 20px; /* Padding for the container */
+}
+
+/* Box Styles */
+.test-box {
+  background-color: white; /* Background color for each box */
+  border: 1px solid #000; /* Border for each box (black color) */
+  padding: 20px; /* Padding for each box */
+  margin-bottom: 20px; /* Margin between boxes */
+  width: 48%; /* Set width for each box (adjust as needed) */
+  box-sizing: border-box; /* Include padding and border in the box's total width and height */
+  border-radius: 10px; /* Rounded corners for each box */
+}
+
+/* Test Charge Table Styles */
+.test-service-table table {
+  width: 100%; /* Make the table fill the entire box */
+  border-collapse: collapse; /* Collapse the table borders */
+  margin-top: 15px; /* Margin for the table */
+}
+
+.test-service-table th, .test-service-table td {
+  border: 1px solid #000; /* Border for table cells (black color) */
+  padding: 8px; /* Padding for table cells */
+  text-align: left; /* Align text to the left */
+  color: black; /* Font color for table cells */
+}
+
+.test-service-table th {
+  background-color: #071832; /* Header background color */
+  color: white; /* Header text color */
+}
+
+/* Add Test to Patient Form Styles */
+.test-add-to-patient label {
+  display: block; /* Display labels as block elements */
+  margin-top: 10px; /* Margin between labels */
+  color: black; /* Font color for labels */
+}
+
+.test-add-to-patient input {
+  width: 100%; /* Make the input fields fill the entire width */
+  padding: 8px; /* Padding for input fields */
+  margin-top: 5px; /* Margin between input fields */
+  box-sizing: border-box; /* Include padding and border in the input's total width and height */
+}
+
+.test-add-to-patient .selected-test {
+  background-color: #4caf50; /* Background color for selected tests */
+  color: white; /* Text color for selected tests */
+  padding: 5px; /* Padding for selected tests */
+  margin-right: 5px; /* Margin between selected tests */
+  border-radius: 5px; /* Border radius for selected tests */
+}
+
+.test-add-to-patient button {
+  background-color: #4caf50; /* Button background color */
+  color: white; /* Button text color */
+  padding: 10px; /* Padding for the button */
+  margin-top: 10px; /* Margin between the button and the last element */
+  cursor: pointer; /* Add pointer cursor to the button */
+  border: none; /* Remove button border */
+  border-radius: 5px; /* Border radius for the button */
+}
+
+.test-add-to-patient button:hover {
+  background-color: #45a049; /* Hover background color for the button */
+}
+
+/* Title Styles */
+.table-title, .form-title {
+  color: black; /* Title color */
+  margin-bottom: 15px; /* Margin between title and content */
+}
+
+/* Error and Success Message Styles */
+.error-message, .success-message {
+  background-color: #ff5252; /* Error message background color */
+  color: white; /* Error message text color */
+  padding: 10px; /* Padding for error message */
+  margin-top: 10px; /* Margin between error message and other elements */
+  border-radius: 5px; /* Border radius for error message */
+}
+
+.success-message {
+  background-color: #4caf50; /* Success message background color */
+}
+
+/* Total Bill Styles */
+.total-bill {
+  color: black; /* Total bill text color */
+  font-weight: bold; /* Bold font for total bill */
+  margin-top: 10px; /* Margin between total bill and other elements */
+}

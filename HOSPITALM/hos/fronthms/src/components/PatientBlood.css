@@ -1,0 +1,51 @@
+/* PatientBlood.css */
+
+.patient-blood-container {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(to right, #ff6666, #8b0000);
+    height: 100vh;
+    color: white;
+  }
+  
+  .blood-details-table {
+    width: 80%;
+    margin: auto;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .blood-details-table th,
+  .blood-details-table td {
+    border: 1px solid #ff6666;
+    padding: 15px;
+    color: red; /* Set text color to red */
+  }
+  
+  .blood-details-table th {
+    background-color: #ff6666;
+    color: white;
+  }
+  
+  .blood-details-table tbody tr:nth-child(even) {
+    background-color: #ffc2c2;
+  }
+  
+  .table-container {
+    overflow-x: auto;
+    margin-top: 20px;
+  }
+  
+  /* Blood design for table */
+  .blood-details-table:before {
+    content: "";
+    background: radial-gradient(circle, transparent 20%, #ff6666 20%, #ff6666 80%, transparent 80%);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: -1;
+  }
+  
